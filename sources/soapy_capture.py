@@ -1,21 +1,24 @@
-'''
-Gets array of complex IQ samples via SoapySDR.
-
-TODO: 
-- Right now includes ADSB packet info / plotting - remove soon, should only return IQ.
-- Interface with future `source` class
-'''
-
 import numpy as np
 import SoapySDR
-import matplotlib.pyplot as plt
 
 from SoapySDR import SOAPY_SDR_RX, SOAPY_SDR_CF32
+
 from adsb.adsb import ADSBReceiver
+
 
 FS = 2.4e6
 FC = 1090e6
-NUM_SAMPLES = 262144
+
+BUFFER_SAMPLES = 131072
+
+OVERLAP_SAMPLES = int(
+    np.ceil(130e-6 * FS)
+)
+
+tail = np.empty(
+    0,
+    dtype=np.complex64,
+)
 
 devices = SoapySDR.Device.enumerate()
 
@@ -23,7 +26,6 @@ if not devices:
     raise RuntimeError("No SDR devices found.")
 
 device = SoapySDR.Device(devices[0])
-receiver = ADSBReceiver(FS)
 
 device.setSampleRate(SOAPY_SDR_RX, 0, FS)
 device.setFrequency(SOAPY_SDR_RX, 0, FC)
@@ -35,81 +37,85 @@ stream = device.setupStream(
     [0],
 )
 
-samples = np.empty(NUM_SAMPLES, dtype=np.complex64)
+receiver = ADSBReceiver(FS)
 
-device.activateStream(stream)
+samples = np.empty(
+    BUFFER_SAMPLES,
+    dtype=np.complex64,
+)
 
-num_received = 0
+try:
+    device.activateStream(stream)
 
-while num_received < NUM_SAMPLES:
-    '''
-    `device.readStream()` doesn't always return `NUM_SAMPLES` samples.
-    This loop is an attempt to make sure it does. 
-    '''
-    result = device.readStream(
-        stream,
-        [samples[num_received:]],
-        NUM_SAMPLES - num_received,
-    )
-
-    if result.ret < 0:
-        raise RuntimeError(
-            f"SoapySDR readStream failed with code {result.ret}"
+    while True:
+        result = device.readStream(
+            stream,
+            [samples],
+            BUFFER_SAMPLES,
+            timeoutUs=1_000_000,
         )
 
-    print(
-        f"requested={NUM_SAMPLES - num_received}, "
-        f"received={result.ret}"
-    )
+        if result.ret == SoapySDR.SOAPY_SDR_TIMEOUT:
+            print("readStream timeout")
+            continue
 
-    num_received += result.ret
+        if result.ret < 0:
+            raise RuntimeError(
+                f"readStream failed with code {result.ret}"
+            )
 
-print("\n------------CAPTURE INFO------------")
-print(f"total received: {num_received}")
-print(result)
-print(samples.dtype)
-print(samples.shape)
-print(samples[:10])
-print("------------------------------------\n")
+        new_samples = samples[:result.ret]
 
-candidate = receiver.process(samples)
+        old_tail_len = len(tail)
 
-if candidate is None:
-    print("No ADS-B candidate detected.")
-else:
-    print("ADS-B candidate detected")
-    np.save("captures/adsb_candidate.npy", samples)
-    print(f"score:          {candidate.score:.6f}")
-    print(f"median score:   {candidate.median_score:.6f}")
-    print(f"relative score: {candidate.relative_score:.2f}")
+        iq = np.concatenate([
+            tail,
+            new_samples,
+        ])
 
-    time_us = (
-        np.arange(len(candidate.power))
-        / FS
-        * 1e6
-    )
+        detections = receiver.process(iq)
 
-    # Whole packet plot.
-    plt.plot(time_us, candidate.power)
-    plt.xlabel("Time (µs)")
-    plt.ylabel("Power")
-    plt.title("Detected ADS-B candidate")
-    plt.show()
+        tail = iq[-OVERLAP_SAMPLES:].copy()
 
-    # Preamble - shows discrete samples.
-    n = int(12e-6 * FS)
+        for detection in detections:
 
-    plt.stem(
-        time_us[:n],
-        candidate.power[:n],
-    )
+            packet = detection.packet
 
-    plt.xlabel("Time (µs)")
-    plt.ylabel("Power")
-    plt.title("Candidate preamble")
-    plt.grid()
-    plt.show()
+            packet_duration_samples = int(
+                np.ceil(
+                    (8 + len(packet.bits))
+                    * 1e-6
+                    * FS
+                )
+            )
 
-device.deactivateStream(stream)
-device.closeStream(stream)
+            packet_end = (
+                detection.preamble_index
+                + packet_duration_samples
+            )
 
+            # Skip packets that were completely contained
+            # in the previous block's overlap.
+            if packet_end <= old_tail_len:
+                continue
+
+            print()
+            print("Mode-S packet detected")
+            print(f"  DF:           DF{packet.downlink_format}")
+            print(f"  Message:      {packet.hex}")
+            print(f"  CRC valid:    {packet.crc_ok}")
+            print(
+                f"  Correlation:  "
+                f"{detection.timing_correlation:.3f}"
+            )
+
+            if detection.message is not None:
+                print()
+                print(detection.message)
+
+except KeyboardInterrupt:
+    print("\nStopping receiver...")
+
+finally:
+    device.deactivateStream(stream)
+    device.closeStream(stream)

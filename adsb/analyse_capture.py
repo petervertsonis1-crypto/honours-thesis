@@ -1,49 +1,42 @@
+'''
+For testing ADSB
+'''
+
 import numpy as np
 
-from adsb.adsb import ADSBPreambleDetector
+from .detector import ADSBPreambleDetector
+from .decoder import ADSBPacketDecoder
+from .messages import decode_message
 
 FS = 2.4e6
 
-samples = np.load("captures/adsb_candidate_006_lm.npy")
+samples = np.load("captures/adsb_candidate_009_sm.npy")
 power = np.abs(samples) ** 2
 
 detector = ADSBPreambleDetector(FS)
+decoder  = ADSBPacketDecoder(FS)
 
-coarse_index, coarse_score = detector.find_coarse(power)
+coarse_index, coarse_score = (
+    detector.find_coarse(power)
+)
 
-index, phase, correlation = detector.refine_timing(
+index, phase, correlation = (
+    detector.refine_timing(
+        power,
+        coarse_index,
+    )
+)
+
+packet = decoder.decode(
     power,
-    coarse_index,
+    preamble_index=index,
+    phase=phase,
 )
 
-true_start = index + phase
+message = decode_message(packet)
 
-print(f"coarse index:        {coarse_index}")
-print(f"coarse score:        {coarse_score:.6f}")
-print(f"refined index:       {index}")
-print(f"estimated phase:     {phase:.1f}")
-print(f"true start:          {true_start:.1f}")
-print(f"correlation:         {correlation:.4f}")
+print(f"Downlink Format: DF{packet.downlink_format}")
+print(f"Message:         {packet.hex}")
+print(f"CRC valid:       {packet.crc_ok}")
 
-if index is not None:
-    time_ms = index / FS * 1e3
-    print(f"candidate time:      {time_ms:.3f} ms")
-
-template_length = detector.phase_templates.shape[1]
-
-window = power[
-    index:index + template_length
-]
-
-phase, phase_score, phase_scores = (
-    detector.score_phase_window(window)
-)
-
-print(f"estimated phase:      {phase:.1f}")
-print(f"phase score:          {phase_score:.4f}")
-
-for tested_phase, score in zip(
-    detector.TIMING_PHASES,
-    phase_scores,
-):
-    print(f"    phase {tested_phase:.1f}: {score:.4f}")
+print(message)
