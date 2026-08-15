@@ -573,7 +573,7 @@ class ADSBPreambleDetector:
     
         return pulse_power - gap_power
 
-    def find_best(
+    def find_coarse(
         self,
         power: np.ndarray,
     ) -> tuple[int | None, float]:
@@ -586,3 +586,48 @@ class ADSBPreambleDetector:
         best_score = float(scores[best_index])
     
         return best_index, best_score
+
+    def refine_timing(
+        self,
+        power: np.ndarray,
+        coarse_index: int,
+        search_radius: int = 2,
+    ) -> tuple[int, float, float]:
+
+        template_length = self.phase_templates.shape[1]
+
+        best_index = None
+        best_phase = None
+        best_score = float("-inf")
+
+        for index in range(
+            coarse_index - search_radius,
+            coarse_index + search_radius + 1,
+        ):
+            if index < 0:
+                continue
+
+            if index + template_length > len(power):
+                continue
+
+            window = power[
+                index:index + template_length
+            ]
+
+            phase, score, _ = self.score_phase_window(
+                window
+            )
+
+            print(
+                f"index={index}, "
+                f"phase={phase:.1f}, "
+                f"timing={index + phase:.1f}, "
+                f"score={score:.4f}"
+            )
+
+            if score > best_score:
+                best_index = index
+                best_phase = phase
+                best_score = score
+
+        return best_index, best_phase, best_score

@@ -2,12 +2,22 @@
 
 Honours thesis project investigating the detection and identification of wireless protocols from raw IQ samples, with particular focus on preamble detection and automated protocol analysis.
 
-## Development
+## Setup
 
-Create and activate a virtual environment:
+System dependencies (macOS):
 
-```bash
-python3.12 -m venv .venv
+```
+brew install soapysdr soapyrtlsdr
+```
+
+Python environment:
+```
+python3.14 -m venv --system-site-packages .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
+```
+
+To run:
+```
+python -m sources.soapy_capture
 ```
