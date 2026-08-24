@@ -6,3 +6,4 @@ __pycache__/
 .vscode
 validation/ground_truth.json
 external/
+captures/*
