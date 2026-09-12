@@ -1,0 +1,274 @@
+
+======================================================================
+nr30_clean  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=1.549 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          linear-shaped
+  BW99 / RMS     8.566 MHz / 4.996 MHz   offset -22.04 kHz
+  env CV / PAPR  0.531 / 9.6 dB   flatness 0.96  edge 24.6 dB
+  symbol rate    849.4 kHz (line SNR 4.8x)
+  FSK tones      2, deviation 2.398 MHz
+  · symbol rate from squared-envelope
+  · tone count via eye(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.566 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.566 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+
+─── burst 1  t=3.049 ms  len=0.902 ms  SNR≈186.8 dB ───
+  class          linear-shaped
+  BW99 / RMS     8.553 MHz / 4.993 MHz   offset -22.98 kHz
+  env CV / PAPR  0.531 / 9.5 dB   flatness 0.97  edge 24.6 dB
+  symbol rate    491.2 kHz (line SNR 4.2x)
+  FSK tones      2, deviation 1.885 MHz
+  · symbol rate from squared-envelope
+  · tone count via eye(w=3)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.553 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.553 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+
+─── burst 2  t=4.549 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          ofdm
+  BW99 / RMS     8.562 MHz / 5.004 MHz   offset -19.99 kHz
+  env CV / PAPR  0.531 / 10.0 dB   flatness 0.96  edge 24.0 dB
+  symbol rate    596.2 kHz (line SNR 4.3x)
+  FSK tones      2, deviation 1.781 MHz
+  OFDM           FFT≈512 samp, CP≈32, SCS≈30 kHz (z=17.6)
+  · symbol rate from squared-envelope
+  · tone count via eye(w=2)
+  candidates:
+    100.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation ofdm vs ofdm: gate x1.00
+            · BW99 8.562 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+            · subcarrier spacing 30 kHz: 1.00
+      8.5%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation ofdm vs ofdm: gate x1.00
+            · BW99 8.562 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+            · subcarrier spacing 30 kHz: 0.00
+
+─── burst 3  t=6.049 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          linear-shaped
+  BW99 / RMS     8.57 MHz / 4.987 MHz   offset -20.54 kHz
+  env CV / PAPR  0.530 / 10.2 dB   flatness 0.96  edge 23.2 dB
+  symbol rate    1.208 MHz (line SNR 4.8x)
+  FSK tones      2, deviation 1.781 MHz
+  · symbol rate from squared-envelope
+  · tone count via eye(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.57 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.57 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+
+─── burst 4  t=7.549 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          linear-shaped
+  BW99 / RMS     8.567 MHz / 5.004 MHz   offset -20.19 kHz
+  env CV / PAPR  0.529 / 11.4 dB   flatness 0.96  edge 23.0 dB
+  symbol rate    541.9 kHz (line SNR 4.4x)
+  FSK tones      2, deviation 2.722 MHz
+  · symbol rate from fm-derivative
+  · tone count via eye(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.567 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.567 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+
+─── burst 5  t=9.049 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          linear-shaped
+  BW99 / RMS     8.577 MHz / 4.987 MHz   offset -26.9 kHz
+  env CV / PAPR  0.524 / 10.4 dB   flatness 0.96  edge 22.8 dB
+  symbol rate    515.6 kHz (line SNR 4.6x)
+  FSK tones      1, deviation 0 Hz
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=15)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.577 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.577 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+
+─── burst 6  t=10.549 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          ofdm
+  BW99 / RMS     8.562 MHz / 4.984 MHz   offset -16.36 kHz
+  env CV / PAPR  0.528 / 10.5 dB   flatness 0.96  edge 23.6 dB
+  symbol rate    202.5 kHz (line SNR 4.4x)
+  FSK tones      2, deviation 2.693 MHz
+  OFDM           FFT≈512 samp, CP≈32, SCS≈30 kHz (z=16.3)
+  · symbol rate from fm-derivative
+  · tone count via eye(w=2)
+  candidates:
+    100.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation ofdm vs ofdm: gate x1.00
+            · BW99 8.562 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+            · subcarrier spacing 30 kHz: 1.00
+      8.5%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation ofdm vs ofdm: gate x1.00
+            · BW99 8.562 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+            · subcarrier spacing 30 kHz: 0.00
+
+─── burst 7  t=12.049 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          linear-shaped
+  BW99 / RMS     8.571 MHz / 4.996 MHz   offset -17.59 kHz
+  env CV / PAPR  0.532 / 10.4 dB   flatness 0.96  edge 24.6 dB
+  symbol rate    1.314 MHz (line SNR 4.1x)
+  FSK tones      2, deviation 2.971 MHz
+  · symbol rate from fm-derivative
+  · tone count via eye(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.571 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.571 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+
+─── burst 8  t=13.549 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          linear-shaped
+  BW99 / RMS     8.568 MHz / 5.007 MHz   offset -17.48 kHz
+  env CV / PAPR  0.532 / 10.1 dB   flatness 0.96  edge 25.1 dB
+  symbol rate    1.357 MHz (line SNR 4.9x)
+  FSK tones      2, deviation 1.997 MHz
+  · symbol rate from squared-envelope
+  · tone count via eye(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.568 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.568 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+
+─── burst 9  t=15.049 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          ofdm
+  BW99 / RMS     8.575 MHz / 5.01 MHz   offset -23.46 kHz
+  env CV / PAPR  0.529 / 10.4 dB   flatness 0.96  edge 24.3 dB
+  symbol rate    3.268 MHz (line SNR 4.2x)
+  FSK tones      2, deviation 2.221 MHz
+  OFDM           FFT≈512 samp, CP≈32, SCS≈30 kHz (z=16.3)
+  · symbol rate from fm-derivative
+  · tone count via eye(w=2)
+  candidates:
+    100.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation ofdm vs ofdm: gate x1.00
+            · BW99 8.575 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+            · subcarrier spacing 30 kHz: 1.00
+      8.5%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation ofdm vs ofdm: gate x1.00
+            · BW99 8.575 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+            · subcarrier spacing 30 kHz: 0.00
+
+─── burst 10  t=16.549 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          linear-shaped
+  BW99 / RMS     8.56 MHz / 4.987 MHz   offset -18.21 kHz
+  env CV / PAPR  0.531 / 10.9 dB   flatness 0.97  edge 24.7 dB
+  symbol rate    526.9 kHz (line SNR 4.2x)
+  FSK tones      2, deviation 1.809 MHz
+  · symbol rate from fm-derivative
+  · tone count via eye(w=3)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.56 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.56 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+
+─── burst 11  t=18.049 ms  len=0.902 ms  SNR≈186.7 dB ───
+  class          linear-shaped
+  BW99 / RMS     8.568 MHz / 4.997 MHz   offset -19.68 kHz
+  env CV / PAPR  0.524 / 10.0 dB   flatness 0.96  edge 23.9 dB
+  symbol rate    328.1 kHz (line SNR 4.8x)
+  FSK tones      1, deviation 0 Hz
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=23)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.568 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 8.568 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 0.902 ms: 1.00
+    burst 0     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 1     0.90 ms  snr 186.8 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 2     0.90 ms  snr 186.7 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 3     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 4     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 5     0.90 ms  snr 186.7 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 6     0.90 ms  snr 186.7 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 7     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 8     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 9     0.90 ms  snr 186.7 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 10    0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 11    0.90 ms  snr 186.7 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 12 bursts, 3 confident. 3 confident -- expected none
+
+======================================================================
+SUMMARY
+======================================================================
+band        bursts  conf  result
+nr30_clean      12     3  3 confident -- expected none

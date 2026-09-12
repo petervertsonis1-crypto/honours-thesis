@@ -2,7 +2,7 @@
 
 - Original test run with BLE LE 1M generated samples from `gen_bluetooth.m`:
 
-```python
+```
 ─── burst 11  t=5.966 ms  len=0.268 ms  SNR≈198.1 dB ───
   class          fsk2
   BW99 / RMS     1.226 MHz / 501 kHz   offset -8.772 kHz
@@ -73,7 +73,7 @@ dev = 0.5*float(tones[1] - tones[0]) if n == 2 else (float(np.median(d)) if d.si
 
 - After changing deviation calculation:
 
-```python
+```
 (.venv) petervertsonis@Peters-MacBook-Pro thesis % python validation/experiments/run_sweep_id.py --dir generated
 
 ======================================================================
@@ -472,7 +472,7 @@ $$
             · FSK deviation 289.6 kHz: 0.27
 ```
 
-- This only stops being an issue for SNR+20dB where $P_N = 10^{-20/10} = 0.01P_S$, so signal already takes up $1/1.01=99.01\%$ of total signal and fulfills BW99 requirements truthfully.
+- This stops being dominated by noise for SNR+20dB where $P_N = 10^{-20/10} = 0.01P_S$, so signal already takes up $1/1.01=99.01\%$ of total signal and fulfills BW99 requirements truthfully.
 
 - BW99 is somewhat broken!
 
@@ -1018,3 +1018,636 @@ antenna: None  gain: None dB
     - Other important noise-implying features: spectral_flatness = 1.00, edge = 0 dB. <- We could potentially look at that for classifying noise.
 
     - Underlying problem: Classification is attempted before it is established that a classifiable signal exists.
+
+# Bluetooth Classic `gen_bluetooth_classic.m`
+
+- Classifier was fighting between Bluetooth Classic and "Nordic" pretty much 50/50, except for snr+05 where it confidently classified the capture as 802.11b/g every time.
+
+  - Was to be expected because `iq_protocol_id.py` definition of both protocols overlaps enormously:
+
+```python
+dict(name="Bluetooth Classic (GFSK, BR)", mod=["fsk2", "const-env-phase"],
+         bw=(0.7 * MHz, 1.3 * MHz), rate=(0.85e6, 1.15e6), dur=(100e-6, 3.0e-3),
+         band=[(2.402e9, 2.480e9)], dev=(140 * kHz, 175 * kHz),
+         spec="Bluetooth Core 5.4, Vol 6"),
+
+dict(name="Nordic/ANT-class 1 Mbps GFSK", mod=["fsk2"],
+         bw=(0.8 * MHz, 1.4 * MHz), rate=(0.9e6, 1.1e6), dur=(30e-6, 500e-6),
+         band=[(2.400e9, 2.485e9)], dev=(140 * kHz, 200 * kHz),
+         spec="ANT Message Protocol / nRF24 datasheet"),
+```
+
+- Summary pasted below. Note for snr+30 it classifies as "CORRECT" even though it's not... it only correctly classified 1 burst correctly as Bluetooth Classic, with 11 others being classified incorrectly as Nordic. That's a bug in `run_sweep_id.py`.
+
+- Also worth noting number of bursts decreases all the way to 1 when SNR gets too low. This is because of the burst detection logic classifying the entire capture as a continuous burst, because there's no distinguishable point where the received power peaks > 8 dB above noise floor and stays consistently above 5 dB thereafter. 
+
+  - The classifier then analyses the entire capture as one burst and tries to classify as whatever protocol scores the highest.
+
+  - These classifications are basically random guesses. Once energy-based segmentation fails, downstream classification ceases to be meaningful because the extracted 'burst' is no longer an actual packet.
+
+```
+======================================================================
+SUMMARY
+======================================================================
+band        bursts  conf  result
+bluetooth_br_clean      12    12  missed (wanted Bluetooth Classic)
+bluetooth_br_snr+00       1     0  missed (wanted Bluetooth Classic)
+bluetooth_br_snr+05      12     4  missed (wanted Bluetooth Classic)
+bluetooth_br_snr+10      12     0  missed (wanted Bluetooth Classic)
+bluetooth_br_snr+15      12     0  missed (wanted Bluetooth Classic)
+bluetooth_br_snr+20      12    12  missed (wanted Bluetooth Classic)
+bluetooth_br_snr+30      12    12  CORRECT
+bluetooth_br_snr-05       1     0  missed (wanted Bluetooth Classic)
+bluetooth_br_snr-10       1     1  missed (wanted Bluetooth Classic)
+```
+
+```
+HIGH SNR
+Bluetooth packet detected correctly
+        ↓
+features extracted reasonably
+        ↓
+Bluetooth Classic ≈ Nordic/ANT feature overlap
+        ↓
+confident wrong identification
+        ↓
+STRUCTURAL CLASSIFIER AMBIGUITY
+
+
+~10–15 dB
+packet segmentation okay
+        ↓
+feature estimates deteriorate
+        ↓
+BT / Nordic / SiK / Wi-Fi unstable
+        ↓
+mostly below confidence threshold
+        ↓
+FEATURE ESTIMATION FAILURE
+
+
+~5 dB
+packet segmentation fragments packets
+        ↓
+wrong BW / duration / modulation features
+        ↓
+802.11b/g becomes plausible
+        ↓
+sometimes confidently wrong
+        ↓
+SEGMENTATION + FEATURE FAILURE
+
+
+0 dB AND BELOW
+burst detector collapses whole capture
+        ↓
+11.32 ms "burst"
+        ↓
+classification essentially meaningless
+        ↓
+BURST DETECTION FAILURE
+```
+
+- Example clean verbose run:
+
+```
+─── burst 11  t=6.809 ms  len=0.331 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     1.072 MHz / 319.4 kHz   offset -8.003 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.43  edge 17.2 dB
+  symbol rate    1 MHz (line SNR 18.6x)
+  FSK tones      2, deviation 190 kHz
+  · symbol rate from fm-derivative
+  · tone count via eye(w=1)
+  candidates:
+    100.0%  Nordic/ANT-class 1 Mbps GFSK
+            spec: ANT Message Protocol / nRF24 datasheet
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 1.072 MHz vs 800 kHz–1.4 MHz: 1.00
+            · symbol rate 1 MHz vs 900 kHz–1.1 MHz: 1.00
+            · burst 0.331 ms: 1.00
+            · FSK deviation 190 kHz: 1.00
+     97.7%  Bluetooth Classic (GFSK, BR)
+            spec: Bluetooth Core 5.4, Vol 6
+            · modulation fsk2 vs fsk2/const-env-phase: gate x1.00
+            · BW99 1.072 MHz vs 700 kHz–1.3 MHz: 1.00
+            · symbol rate 1 MHz vs 850 kHz–1.15 MHz: 1.00
+            · burst 0.331 ms: 1.00
+            · FSK deviation 190 kHz: 0.88
+     94.9%  Bluetooth LE 1M (GFSK)
+            spec: Bluetooth Core 5.4, Vol 6 Part B
+            · modulation fsk2 vs fsk2/const-env-phase: gate x1.00
+            · BW99 1.072 MHz vs 800 kHz–1.4 MHz: 1.00
+            · symbol rate 1 MHz vs 900 kHz–1.1 MHz: 1.00
+            · burst 0.331 ms: 1.00
+            · FSK deviation 190 kHz: 0.76
+```
+
+- FSK tones deviation measured 190 kHz. Generator script should be generating 160kHz. 190 kHz falls outside of detectors deviation range for Bluetooth Classic, so it gets a lower score than Nordic.
+
+  - Fixing this wouldn't fix the issue - Bluetooth Classic and Nordic would still score 100%.
+
+- For +20dB SNR run, FSK tones measured anywhere from ~153 - 208 kHz. BW99 also rose to just outside of the acceptable 800kHz - 1.4 MHz range.
+
+- For +5 dB SNR run, BW99 blew up signifcantly to ~7.5-8 MHz. Envelope CV was measured to be around ~0.35. Symbol rate varied significantly. Also burst duration varied from ~0.08 - ~0.2ms, which indicates that the lower SNR environment hurts the accuracy of the burst segmentation logic.
+
+  - Note that for BW99, this matches earlier observation about noise filling up the required 99%. At 5dB SNR, $P_N \approx 0.31623P_S$, which means that the signal contains only $1/1.31623\approx 76\%$ of the total captures power. The remaining 23% must be filled up with noise, which requires:
+
+  $$
+  \frac{0.99(1.31623)-1}{0.31623} \approx 95.84%
+  $$ 
+
+  - of available capture bandwidth. Which in our case is 8MHz, which predicts a BW99 of $0.9584 (8\,\text{MHz}) = 7.667\,\text{MHz}$.
+
+# P25 - Phase 1 C4FM.
+
+- Another case of two very similarly defined protocols within `iq_protocol_id.py` but using a completely different modulation scheme is DMR vs P25.
+
+```python
+dict(name="DMR (4-FSK, 12.5 kHz)", mod=["fsk4"],
+      bw=(8 * kHz, 14 * kHz), rate=(4.5e3, 5.1e3), dur=(20e-3, 0.5),
+      band=[(130e6, 950e6)], spec="ETSI TS 102 361"),
+dict(name="P25 Phase 1 (C4FM)", mod=["fsk4"],
+      bw=(8 * kHz, 14 * kHz), rate=(4.5e3, 5.1e3), dur=(20e-3, 5.0),
+      band=[(130e6, 900e6)], spec="TIA-102.BAAA"),
+```
+
+- We generate with `gen_p25.m` with the following statistics:
+
+symbol rate:     4800.0 sym/s
+native Fs:       38.4 kS/s
+output Fs:       48.0 kS/s
+centre:          851.0125 MHz
+bursts:          20
+burst duration:  50.0 ms
+idle gap:        20.0 ms
+active power:    0.512871
+capture length:  1.400 s
+
+- Note that sampling rate is significantly lower than the 8MS/s - 20MS/s that we've been using so far. Symbol rate is much lower for P25, and sampling at 8MS/s would lead to massive BW99 overestimation as previously discussed.
+
+```
+(.venv) petervertsonis@Peters-MacBook-Pro thesis % python validation/experiments/run_sweep_id.py \
+    --dir generated \
+    --only p25_c4fm_clean \
+    --verbose
+
+======================================================================
+p25_c4fm_clean  --  851.013 MHz, 67200 samples @ 0.0 MS/s
+expected: P25 Phase 1 (C4FM)  (C4FM / 4-FSK)
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=72.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          fsk2
+  BW99 / RMS     6.777 kHz / 2.564 kHz   offset -209.6 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.58  edge 16.9 dB
+  symbol rate    257.8 Hz (line SNR 13.3x)
+  FSK tones      2, deviation 322.4 Hz
+  CSS            BW≈7.8 kHz, SF≈5, 1.901 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=64)
+  candidates:
+     64.6%  POCSAG paging (2-FSK)
+            spec: ITU-R M.584
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 6.777 kHz vs 6 kHz–25 kHz: 1.00
+            · symbol rate 257.8 Hz vs 480 Hz–2.5 kHz: 0.25
+            · burst 45.062 ms: 0.94
+     44.9%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation fsk2 vs fsk-multi/const-env-phase: gate x0.55
+            · BW99 6.777 kHz vs 8 kHz–20 kHz: 0.76
+            · burst 45.062 ms: 0.94
+
+─── burst 1  t=142.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          fsk2
+  BW99 / RMS     7.14 kHz / 2.733 kHz   offset -63.68 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.60  edge 16.7 dB
+  symbol rate    164.1 Hz (line SNR 13.1x)
+  FSK tones      2, deviation 423.5 Hz
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=64)
+  candidates:
+     47.8%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation fsk2 vs fsk-multi/const-env-phase: gate x0.55
+            · BW99 7.14 kHz vs 8 kHz–20 kHz: 0.84
+            · burst 45.062 ms: 0.94
+     11.8%  POCSAG paging (2-FSK)
+            spec: ITU-R M.584
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 7.14 kHz vs 6 kHz–25 kHz: 1.00
+            · symbol rate 164.1 Hz vs 480 Hz–2.5 kHz: 0.00
+            · burst 45.062 ms: 0.94
+
+─── burst 2  t=212.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          const-env-phase
+  BW99 / RMS     6.736 kHz / 2.504 kHz   offset 13.49 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.60  edge 17.2 dB
+  symbol rate    257.8 Hz (line SNR 15.0x)
+  FSK tones      3, deviation 458.4 Hz
+  CSS            BW≈6.736 kHz, SF≈5, 1.418 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=64)
+  candidates:
+     81.0%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation const-env-phase vs fsk-multi/const-env-phase: gate x1.00
+            · BW99 6.736 kHz vs 8 kHz–20 kHz: 0.75
+            · burst 45.062 ms: 0.94
+     35.5%  POCSAG paging (2-FSK)
+            spec: ITU-R M.584
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 6.736 kHz vs 6 kHz–25 kHz: 1.00
+            · symbol rate 257.8 Hz vs 480 Hz–2.5 kHz: 0.25
+            · burst 45.062 ms: 0.94
+      4.2%  DMR (4-FSK, 12.5 kHz)
+            spec: ETSI TS 102 361
+            · modulation const-env-phase vs fsk4: gate x0.40
+            · BW99 6.736 kHz vs 8 kHz–14 kHz: 0.75
+            · symbol rate 257.8 Hz vs 4.5 kHz–5.1 kHz: 0.00
+            · burst 45.062 ms: 1.00
+
+─── burst 3  t=282.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          const-env-phase
+  BW99 / RMS     7.006 kHz / 2.575 kHz   offset -126.2 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.57  edge 16.7 dB
+  symbol rate    257.8 Hz (line SNR 11.6x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈7.8 kHz, SF≈5, 1.901 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=64)
+  candidates:
+     85.0%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation const-env-phase vs fsk-multi/const-env-phase: gate x1.00
+            · BW99 7.006 kHz vs 8 kHz–20 kHz: 0.81
+            · burst 45.062 ms: 0.94
+     35.5%  POCSAG paging (2-FSK)
+            spec: ITU-R M.584
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 7.006 kHz vs 6 kHz–25 kHz: 1.00
+            · symbol rate 257.8 Hz vs 480 Hz–2.5 kHz: 0.25
+            · burst 45.062 ms: 0.94
+      4.3%  DMR (4-FSK, 12.5 kHz)
+            spec: ETSI TS 102 361
+            · modulation const-env-phase vs fsk4: gate x0.40
+            · BW99 7.006 kHz vs 8 kHz–14 kHz: 0.81
+            · symbol rate 257.8 Hz vs 4.5 kHz–5.1 kHz: 0.00
+            · burst 45.062 ms: 1.00
+
+─── burst 4  t=352.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          fsk2
+  BW99 / RMS     6.592 kHz / 2.441 kHz   offset -64.57 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.61  edge 17.2 dB
+  symbol rate    140.6 Hz (line SNR 10.7x)
+  FSK tones      2, deviation 295.7 Hz
+  CSS            BW≈6.592 kHz, SF≈5, 1.358 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=64)
+  candidates:
+     43.3%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation fsk2 vs fsk-multi/const-env-phase: gate x0.55
+            · BW99 6.592 kHz vs 8 kHz–20 kHz: 0.72
+            · burst 45.062 ms: 0.94
+     11.8%  POCSAG paging (2-FSK)
+            spec: ITU-R M.584
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 6.592 kHz vs 6 kHz–25 kHz: 1.00
+            · symbol rate 140.6 Hz vs 480 Hz–2.5 kHz: 0.00
+            · burst 45.062 ms: 0.94
+
+─── burst 5  t=422.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          fsk4
+  BW99 / RMS     7.198 kHz / 2.79 kHz   offset -57.11 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.59  edge 16.9 dB
+  symbol rate    281.2 Hz (line SNR 15.6x)
+  FSK tones      4, deviation 420 Hz
+  CSS            BW≈7.198 kHz, SF≈5, 1.619 MHz/s, dechirp energy 0.10
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=64)
+  candidates:
+     52.6%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation fsk4 vs fsk-multi/const-env-phase: gate x0.60
+            · BW99 7.198 kHz vs 8 kHz–20 kHz: 0.85
+            · burst 45.062 ms: 0.94
+     18.0%  POCSAG paging (2-FSK)
+            spec: ITU-R M.584
+            · modulation fsk4 vs fsk2: gate x0.25
+            · BW99 7.198 kHz vs 6 kHz–25 kHz: 1.00
+            · symbol rate 281.2 Hz vs 480 Hz–2.5 kHz: 0.36
+            · burst 45.062 ms: 0.94
+     11.1%  DMR (4-FSK, 12.5 kHz)
+            spec: ETSI TS 102 361
+            · modulation fsk4 vs fsk4: gate x1.00
+            · BW99 7.198 kHz vs 8 kHz–14 kHz: 0.85
+            · symbol rate 281.2 Hz vs 4.5 kHz–5.1 kHz: 0.00
+            · burst 45.062 ms: 1.00
+
+─── burst 6  t=492.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          const-env-phase
+  BW99 / RMS     6.747 kHz / 2.627 kHz   offset -193.4 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.61  edge 16.7 dB
+  symbol rate    140.6 Hz (line SNR 16.3x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈6.747 kHz, SF≈5, 1.423 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=64)
+  candidates:
+     81.2%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation const-env-phase vs fsk-multi/const-env-phase: gate x1.00
+            · BW99 6.747 kHz vs 8 kHz–20 kHz: 0.75
+            · burst 45.062 ms: 0.94
+      6.5%  POCSAG paging (2-FSK)
+            spec: ITU-R M.584
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 6.747 kHz vs 6 kHz–25 kHz: 1.00
+            · symbol rate 140.6 Hz vs 480 Hz–2.5 kHz: 0.00
+            · burst 45.062 ms: 0.94
+      4.2%  DMR (4-FSK, 12.5 kHz)
+            spec: ETSI TS 102 361
+            · modulation const-env-phase vs fsk4: gate x0.40
+            · BW99 6.747 kHz vs 8 kHz–14 kHz: 0.75
+            · symbol rate 140.6 Hz vs 4.5 kHz–5.1 kHz: 0.00
+            · burst 45.062 ms: 1.00
+
+─── burst 7  t=562.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          fsk4
+  BW99 / RMS     6.884 kHz / 2.664 kHz   offset -91.81 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.62  edge 16.6 dB
+  symbol rate    4.125 kHz (line SNR 11.9x)
+  FSK tones      4, deviation 1.115 kHz
+  CSS            BW≈7.8 kHz, SF≈5, 1.901 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=6)
+  candidates:
+     86.4%  DMR (4-FSK, 12.5 kHz)
+            spec: ETSI TS 102 361
+            · modulation fsk4 vs fsk4: gate x1.00
+            · BW99 6.884 kHz vs 8 kHz–14 kHz: 0.78
+            · symbol rate 4.125 kHz vs 4.5 kHz–5.1 kHz: 0.90
+            · burst 45.062 ms: 1.00
+     86.4%  P25 Phase 1 (C4FM)
+            spec: TIA-102.BAAA
+            · modulation fsk4 vs fsk4: gate x1.00
+            · BW99 6.884 kHz vs 8 kHz–14 kHz: 0.78
+            · symbol rate 4.125 kHz vs 4.5 kHz–5.1 kHz: 0.90
+            · burst 45.062 ms: 1.00
+     49.9%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation fsk4 vs fsk-multi/const-env-phase: gate x0.60
+            · BW99 6.884 kHz vs 8 kHz–20 kHz: 0.78
+            · burst 45.062 ms: 0.94
+
+─── burst 8  t=632.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          const-env-phase
+  BW99 / RMS     6.602 kHz / 2.463 kHz   offset -296.9 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.58  edge 17.1 dB
+  symbol rate    164.1 Hz (line SNR 10.7x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈7.8 kHz, SF≈5, 1.901 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=64)
+  candidates:
+     78.9%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation const-env-phase vs fsk-multi/const-env-phase: gate x1.00
+            · BW99 6.602 kHz vs 8 kHz–20 kHz: 0.72
+            · burst 45.062 ms: 0.94
+      6.5%  POCSAG paging (2-FSK)
+            spec: ITU-R M.584
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 6.602 kHz vs 6 kHz–25 kHz: 1.00
+            · symbol rate 164.1 Hz vs 480 Hz–2.5 kHz: 0.00
+            · burst 45.062 ms: 0.94
+      4.1%  DMR (4-FSK, 12.5 kHz)
+            spec: ETSI TS 102 361
+            · modulation const-env-phase vs fsk4: gate x0.40
+            · BW99 6.602 kHz vs 8 kHz–14 kHz: 0.72
+            · symbol rate 164.1 Hz vs 4.5 kHz–5.1 kHz: 0.00
+            · burst 45.062 ms: 1.00
+
+─── burst 9  t=702.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          fsk4
+  BW99 / RMS     7.029 kHz / 2.645 kHz   offset -72 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.59  edge 17.1 dB
+  symbol rate    3.562 kHz (line SNR 14.2x)
+  FSK tones      4, deviation 1.022 kHz
+  CSS            BW≈7.8 kHz, SF≈5, 1.901 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=7)
+  candidates:
+     82.1%  DMR (4-FSK, 12.5 kHz)
+            spec: ETSI TS 102 361
+            · modulation fsk4 vs fsk4: gate x1.00
+            · BW99 7.029 kHz vs 8 kHz–14 kHz: 0.81
+            · symbol rate 3.562 kHz vs 4.5 kHz–5.1 kHz: 0.72
+            · burst 45.062 ms: 1.00
+     82.1%  P25 Phase 1 (C4FM)
+            spec: TIA-102.BAAA
+            · modulation fsk4 vs fsk4: gate x1.00
+            · BW99 7.029 kHz vs 8 kHz–14 kHz: 0.81
+            · symbol rate 3.562 kHz vs 4.5 kHz–5.1 kHz: 0.72
+            · burst 45.062 ms: 1.00
+     51.2%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation fsk4 vs fsk-multi/const-env-phase: gate x0.60
+            · BW99 7.029 kHz vs 8 kHz–20 kHz: 0.81
+            · burst 45.062 ms: 0.94
+
+─── burst 10  t=772.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          fsk4
+  BW99 / RMS     6.828 kHz / 2.516 kHz   offset -88.95 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.55  edge 16.2 dB
+  symbol rate    3.773 kHz (line SNR 15.5x)
+  FSK tones      4, deviation 1.149 kHz
+  CSS            BW≈7.8 kHz, SF≈5, 1.901 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=6)
+  candidates:
+     82.5%  DMR (4-FSK, 12.5 kHz)
+            spec: ETSI TS 102 361
+            · modulation fsk4 vs fsk4: gate x1.00
+            · BW99 6.828 kHz vs 8 kHz–14 kHz: 0.77
+            · symbol rate 3.773 kHz vs 4.5 kHz–5.1 kHz: 0.79
+            · burst 45.062 ms: 1.00
+     82.5%  P25 Phase 1 (C4FM)
+            spec: TIA-102.BAAA
+            · modulation fsk4 vs fsk4: gate x1.00
+            · BW99 6.828 kHz vs 8 kHz–14 kHz: 0.77
+            · symbol rate 3.773 kHz vs 4.5 kHz–5.1 kHz: 0.79
+            · burst 45.062 ms: 1.00
+     49.4%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation fsk4 vs fsk-multi/const-env-phase: gate x0.60
+            · BW99 6.828 kHz vs 8 kHz–20 kHz: 0.77
+            · burst 45.062 ms: 0.94
+
+─── burst 11  t=842.479 ms  len=45.062 ms  SNR≈197.1 dB ───
+  class          fsk4
+  BW99 / RMS     6.616 kHz / 2.503 kHz   offset -40.51 Hz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.59  edge 16.6 dB
+  symbol rate    3.891 kHz (line SNR 12.4x)
+  FSK tones      4, deviation 1.128 kHz
+  CSS            BW≈7.8 kHz, SF≈5, 1.901 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=6)
+  candidates:
+     81.3%  DMR (4-FSK, 12.5 kHz)
+            spec: ETSI TS 102 361
+            · modulation fsk4 vs fsk4: gate x1.00
+            · BW99 6.616 kHz vs 8 kHz–14 kHz: 0.73
+            · symbol rate 3.891 kHz vs 4.5 kHz–5.1 kHz: 0.83
+            · burst 45.062 ms: 1.00
+     81.3%  P25 Phase 1 (C4FM)
+            spec: TIA-102.BAAA
+            · modulation fsk4 vs fsk4: gate x1.00
+            · BW99 6.616 kHz vs 8 kHz–14 kHz: 0.73
+            · symbol rate 3.891 kHz vs 4.5 kHz–5.1 kHz: 0.83
+            · burst 45.062 ms: 1.00
+     47.5%  Analog FM voice / NBFM
+            spec: n/a (analog)
+            · modulation fsk4 vs fsk-multi/const-env-phase: gate x0.60
+            · BW99 6.616 kHz vs 8 kHz–20 kHz: 0.73
+            · burst 45.062 ms: 0.94
+  * burst 0    45.06 ms  snr 197.1 dB  cv  0.00  score 0.65  POCSAG paging (2-FSK)
+  * burst 1    45.06 ms  snr 197.1 dB  cv  0.00  score 0.48  Analog FM voice / NBFM
+  * burst 2    45.06 ms  snr 197.1 dB  cv  0.00  score 0.81  Analog FM voice / NBFM
+  * burst 3    45.06 ms  snr 197.1 dB  cv  0.00  score 0.85  Analog FM voice / NBFM
+  * burst 4    45.06 ms  snr 197.1 dB  cv  0.00  score 0.43  Analog FM voice / NBFM
+  * burst 5    45.06 ms  snr 197.1 dB  cv  0.00  score 0.53  Analog FM voice / NBFM
+  * burst 6    45.06 ms  snr 197.1 dB  cv  0.00  score 0.81  Analog FM voice / NBFM
+  * burst 7    45.06 ms  snr 197.1 dB  cv  0.00  score 0.86  DMR (4-FSK, 12.5 kHz)
+  * burst 8    45.06 ms  snr 197.1 dB  cv  0.00  score 0.79  Analog FM voice / NBFM
+  * burst 9    45.06 ms  snr 197.1 dB  cv  0.00  score 0.82  DMR (4-FSK, 12.5 kHz)
+  * burst 10   45.06 ms  snr 197.1 dB  cv  0.00  score 0.82  DMR (4-FSK, 12.5 kHz)
+  * burst 11   45.06 ms  snr 197.1 dB  cv  0.00  score 0.81  DMR (4-FSK, 12.5 kHz)
+  -> 12 bursts, 12 confident. missed (wanted P25 Phase 1)
+
+======================================================================
+SUMMARY
+======================================================================
+band        bursts  conf  result
+p25_c4fm_clean      12    12  missed (wanted P25 Phase 1)
+```
+
+- Results show that correct identification of the modulation scheme was shaky at best. Const-env-phase was common, as well as 2FSK as well as the correct 4FSK.
+
+- Additionally, DMR and P25 always scored the exact same. They are virtually indistinguishable to this detector over this test case.
+
+- Results showed that symbol rate estimation was usually pretty incorrect. We expect 4.8kHz and got anywhere from 140Hz to 4.1kHz max.
+
+  - Though it's noted that once symbol rate estimation gets relatively close, then it starts consistently 
+
+  - Forcing symbol rate to 4.8kHz and then looking at modulation classification result:
+
+- BW99 is correct according to MATLAB:
+
+```matlab
+>> bw = obw(packet, fs);
+>> fprintf('MATLAB 99%% occupied bandwidth: %.3f kHz\n', bw/1e3);
+% MATLAB 99% occupied bandwidth: 7.203 kHz
+```
+
+- Which implies that BW99 estimation is fairly accurate, but the database still lists DMR and P25 BW99 in range 8-14kHz.
+  
+  - Could reflect that database considers nominal channel bandwidth / channel spacing as opposed to BW99 which is actually measured by the classifier. Consequently, even correctly measured P25 signals receive an unnecessary bandwidth penalty.
+
+```
+burst  0: BW99= 6.84 kHz  rate= 4.80 kHz  tones=4  dev= 1.14 kHz  class=fsk4
+burst  1: BW99= 6.78 kHz  rate= 4.80 kHz  tones=4  dev= 1.18 kHz  class=fsk4
+burst  2: BW99= 7.14 kHz  rate= 4.80 kHz  tones=4  dev= 1.17 kHz  class=fsk4
+burst  3: BW99= 6.74 kHz  rate= 4.80 kHz  tones=4  dev= 1.30 kHz  class=fsk4
+burst  4: BW99= 7.01 kHz  rate= 4.80 kHz  tones=4  dev= 1.31 kHz  class=fsk4
+burst  5: BW99= 6.59 kHz  rate= 4.80 kHz  tones=4  dev= 1.30 kHz  class=fsk4
+burst  6: BW99= 7.20 kHz  rate= 4.80 kHz  tones=4  dev= 1.31 kHz  class=fsk4
+burst  7: BW99= 6.75 kHz  rate= 4.80 kHz  tones=4  dev= 1.30 kHz  class=fsk4
+burst  8: BW99= 6.88 kHz  rate= 4.80 kHz  tones=4  dev= 1.30 kHz  class=fsk4
+burst  9: BW99= 6.60 kHz  rate= 4.80 kHz  tones=4  dev= 1.31 kHz  class=fsk4
+burst 10: BW99= 7.03 kHz  rate= 4.80 kHz  tones=4  dev= 1.33 kHz  class=fsk4
+burst 11: BW99= 6.83 kHz  rate= 4.80 kHz  tones=4  dev= 1.26 kHz  class=fsk4
+```
+
+  - Shows that symbol rate estimation is the root problem - the FSK tone estimator relies on symbol rate estimation.
+
+# GSM - GMSK.
+
+GSM captures were generated using `gen_gsm.m` with the following statistics:
+
+symbol rate:       270.833 ksym/s
+sample rate:       1.083333 MS/s
+samples/symbol:    4
+frames:            20
+burst symbols:     156.25
+centre frequency:  890.2000 MHz
+active signal power: 0.630432
+capture duration:    92.308 ms
+MATLAB clean BW99:   244.803 kHz
+
+- Sometimes recovered correct symbol rate - leading to 100% GSM classification confidence, other times recovered an erroneous symbol rate anywhere from 87 - 167 kHz, which introduced more uncertainty in the final classification, sometimes still classifying GSM, sometimes not even considering it. 
+
+# 5G NR
+
+Statistics:
+
+frequency range:     FR1
+RF centre:           3.500 GHz
+channel bandwidth:   10.0 MHz
+SCS:                 30.0 kHz
+resource blocks:     24
+PDSCH modulation:    64-QAM
+SSB pattern:         Case B
+sample rate:         15.360 MS/s
+FFT size:            512
+generated subframes: 20
+burst duration:      1.000 ms
+idle gap:            0.500 ms
+active signal power: 0.046876
+total duration:      30.000 ms
+MATLAB clean BW99:   8.567 MHz
+
+Results say that the classifier either classifies the captures at OFDM or "linear-shaped". OFDM detection algorithm is as so:
+
+```python
+# Initial
+if ft.ofdm_fft and ft.envelope_cv > 0.30 and ft.flatness > 0.25:
+    return "ofdm"
+
+...
+
+return "linear-shaped"
+
+# Later
+if ac["score"] > 10.0 and ac["value"] > 0.03 and ac["lag"] >= 16:
+    ft.ofdm_fft = ac["lag"]
+```
+
+- So bursts that satisfy CV > 0.30, flatness > 0.25 (virtually all the synthetic 5G captures), are "considered" for OFDM classification, but they are only actually classified at OFDM if they pass the CP autocorrelation test.
+
+  - If CP autocorrelation fails, modulation is automatically classified at "linear-shaped", and no SCS is considered during protocol classification, so we get a very low score. 
+
+- Sweep results:
+
+```
+======================================================================
+SUMMARY
+======================================================================
+band        bursts  conf  result
+nr30_clean      12     3  CORRECT
+nr30_snr+00       1     0  missed (wanted 5G NR (OFDM, 30 kHz SCS))
+nr30_snr+05      12     0  missed (wanted 5G NR (OFDM, 30 kHz SCS))
+nr30_snr+10      12     5  CORRECT
+nr30_snr+15      12     5  CORRECT
+nr30_snr+20      12     4  CORRECT
+nr30_snr+30      12     1  CORRECT
+nr30_snr-05       1     0  missed (wanted 5G NR (OFDM, 30 kHz SCS))
+nr30_snr-10       1     0  missed (wanted 5G NR (OFDM, 30 kHz SCS))
+```
+
+Clean/high-SNR limitation: CP/OFDM detection intermittent (~8–42% across clean to +10 dB). When CP detected, SCS correctly recovered as 30 kHz and NR scored 100%.
++5 dB: burst fragmentation.
+≤0 dB: whole-capture segmentation collapse.

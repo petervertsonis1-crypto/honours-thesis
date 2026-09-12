@@ -1,0 +1,381 @@
+
+======================================================================
+gsm_gmsk_clean  --  890.200 MHz, 100000 samples @ 1.1 MS/s
+expected: GSM / GMSK burst  (GMSK)
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.037 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     244.7 kHz / 95.67 kHz   offset -3.23 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.67  edge 15.0 dB
+  symbol rate    270.8 kHz (line SNR 8.1x)
+  FSK tones      2, deviation 46.71 kHz
+  CSS            BW≈250 kHz, SF≈5, 1953 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-sign-transitions
+  · tone count via eye(w=1)
+  candidates:
+    100.0%  GSM / GMSK burst
+            spec: 3GPP TS 45.004
+            · modulation fsk2 vs const-env-phase/fsk2: gate x1.00
+            · BW99 244.7 kHz vs 180 kHz–300 kHz: 1.00
+            · symbol rate 270.8 kHz vs 265 kHz–275 kHz: 1.00
+            · burst 0.503 ms: 1.00
+     89.8%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 244.7 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 270.8 kHz vs 30 kHz–260 kHz: 0.95
+            · burst 0.503 ms: 0.60
+            · FSK deviation 46.71 kHz: 1.00
+     89.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 244.7 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 270.8 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 1  t=4.652 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     252 kHz / 95.07 kHz   offset -5.015 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.65  edge 17.0 dB
+  symbol rate    270.8 kHz (line SNR 11.6x)
+  FSK tones      2, deviation 46.55 kHz
+  CSS            BW≈252 kHz, SF≈5, 1985 MHz/s, dechirp energy 0.13
+  · symbol rate from fm-sign-transitions
+  · tone count via eye(w=1)
+  candidates:
+    100.0%  GSM / GMSK burst
+            spec: 3GPP TS 45.004
+            · modulation fsk2 vs const-env-phase/fsk2: gate x1.00
+            · BW99 252 kHz vs 180 kHz–300 kHz: 1.00
+            · symbol rate 270.8 kHz vs 265 kHz–275 kHz: 1.00
+            · burst 0.503 ms: 1.00
+     89.8%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 252 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 270.8 kHz vs 30 kHz–260 kHz: 0.95
+            · burst 0.503 ms: 0.60
+            · FSK deviation 46.55 kHz: 1.00
+     89.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 252 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 270.8 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 2  t=9.268 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     245.6 kHz / 96.77 kHz   offset -5.874 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.67  edge 17.4 dB
+  symbol rate    86.75 kHz (line SNR 4.7x)
+  FSK tones      2, deviation 65.46 kHz
+  · symbol rate from fm-derivative
+  · tone count via eye(w=3)
+  candidates:
+     91.0%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 245.6 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 86.75 kHz vs 30 kHz–260 kHz: 1.00
+            · burst 0.503 ms: 0.60
+            · FSK deviation 65.46 kHz: 1.00
+     89.0%  Z-Wave (G.9959 GFSK)
+            spec: ITU-T G.9959
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 245.6 kHz vs 30 kHz–400 kHz: 1.00
+            · symbol rate 86.75 kHz vs 9 kHz–110 kHz: 1.00
+            · burst 0.503 ms: 0.60
+     89.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 245.6 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 86.75 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 3  t=13.883 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     243.1 kHz / 94.6 kHz   offset -4.526 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.68  edge 18.3 dB
+  symbol rate    270.8 kHz (line SNR 11.4x)
+  FSK tones      2, deviation 46.55 kHz
+  · symbol rate from fm-sign-transitions
+  · tone count via eye(w=1)
+  candidates:
+    100.0%  GSM / GMSK burst
+            spec: 3GPP TS 45.004
+            · modulation fsk2 vs const-env-phase/fsk2: gate x1.00
+            · BW99 243.1 kHz vs 180 kHz–300 kHz: 1.00
+            · symbol rate 270.8 kHz vs 265 kHz–275 kHz: 1.00
+            · burst 0.503 ms: 1.00
+     89.8%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 243.1 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 270.8 kHz vs 30 kHz–260 kHz: 0.95
+            · burst 0.503 ms: 0.60
+            · FSK deviation 46.55 kHz: 1.00
+     89.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 243.1 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 270.8 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 4  t=18.498 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          const-env-phase
+  BW99 / RMS     248.7 kHz / 96.28 kHz   offset -4.157 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.62  edge 15.8 dB
+  symbol rate    137.5 kHz (line SNR 6.4x)
+  FSK tones      11, deviation 13.47 kHz
+  repetition     period 15 samp (rho 0.48), CFO +7180 Hz mod 72.22 kHz
+  CSS            BW≈248.7 kHz, SF≈5, 1933 MHz/s, dechirp energy 0.11
+  · repeating structure at 15 samples (rho 0.48); CFO +7180 Hz modulo 72222 Hz
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=4)
+  candidates:
+     62.0%  GSM / GMSK burst
+            spec: 3GPP TS 45.004
+            · modulation const-env-phase vs const-env-phase/fsk2: gate x1.00
+            · BW99 248.7 kHz vs 180 kHz–300 kHz: 1.00
+            · symbol rate 137.5 kHz vs 265 kHz–275 kHz: 0.21
+            · burst 0.503 ms: 1.00
+     49.0%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 248.7 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 137.5 kHz vs 30 kHz–260 kHz: 1.00
+            · burst 0.503 ms: 0.60
+     49.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 248.7 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 137.5 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 5  t=23.114 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          const-env-phase
+  BW99 / RMS     242.2 kHz / 96.23 kHz   offset -4.602 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.68  edge 16.9 dB
+  symbol rate    139.6 kHz (line SNR 4.4x)
+  FSK tones      7, deviation 22.32 kHz
+  repetition     period 32 samp (rho 0.42), CFO -10225 Hz mod 33.85 kHz
+  CSS            BW≈242.2 kHz, SF≈5, 1833 MHz/s, dechirp energy 0.14
+  · repeating structure at 32 samples (rho 0.42); CFO -10225 Hz modulo 33854 Hz
+  · symbol rate from squared-envelope
+  · tone count via blanket(w=4)
+  candidates:
+     63.6%  GSM / GMSK burst
+            spec: 3GPP TS 45.004
+            · modulation const-env-phase vs const-env-phase/fsk2: gate x1.00
+            · BW99 242.2 kHz vs 180 kHz–300 kHz: 1.00
+            · symbol rate 139.6 kHz vs 265 kHz–275 kHz: 0.23
+            · burst 0.503 ms: 1.00
+     49.0%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 242.2 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 139.6 kHz vs 30 kHz–260 kHz: 1.00
+            · burst 0.503 ms: 0.60
+     49.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 242.2 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 139.6 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 6  t=27.729 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     249.5 kHz / 96.73 kHz   offset -4.67 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.61  edge 16.1 dB
+  symbol rate    270.8 kHz (line SNR 11.7x)
+  FSK tones      2, deviation 46.71 kHz
+  CSS            BW≈250 kHz, SF≈5, 1953 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-sign-transitions
+  · tone count via eye(w=1)
+  candidates:
+    100.0%  GSM / GMSK burst
+            spec: 3GPP TS 45.004
+            · modulation fsk2 vs const-env-phase/fsk2: gate x1.00
+            · BW99 249.5 kHz vs 180 kHz–300 kHz: 1.00
+            · symbol rate 270.8 kHz vs 265 kHz–275 kHz: 1.00
+            · burst 0.503 ms: 1.00
+     89.8%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 249.5 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 270.8 kHz vs 30 kHz–260 kHz: 0.95
+            · burst 0.503 ms: 0.60
+            · FSK deviation 46.71 kHz: 1.00
+     89.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 249.5 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 270.8 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 7  t=32.345 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     246.4 kHz / 100.9 kHz   offset -3.318 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.73  edge 15.7 dB
+  symbol rate    270.8 kHz (line SNR 6.1x)
+  FSK tones      2, deviation 46.71 kHz
+  · symbol rate from fm-sign-transitions
+  · tone count via eye(w=1)
+  candidates:
+    100.0%  GSM / GMSK burst
+            spec: 3GPP TS 45.004
+            · modulation fsk2 vs const-env-phase/fsk2: gate x1.00
+            · BW99 246.4 kHz vs 180 kHz–300 kHz: 1.00
+            · symbol rate 270.8 kHz vs 265 kHz–275 kHz: 1.00
+            · burst 0.503 ms: 1.00
+     89.8%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 246.4 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 270.8 kHz vs 30 kHz–260 kHz: 0.95
+            · burst 0.503 ms: 0.60
+            · FSK deviation 46.71 kHz: 1.00
+     89.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 246.4 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 270.8 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 8  t=36.960 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          const-env-phase
+  BW99 / RMS     241.3 kHz / 99.05 kHz   offset -3.156 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.73  edge 16.2 dB
+  symbol rate    167.2 kHz (line SNR 4.4x)
+  FSK tones      6, deviation 25.02 kHz
+  CSS            BW≈250 kHz, SF≈5, 1953 MHz/s, dechirp energy 0.14
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=3)
+  candidates:
+     78.0%  GSM / GMSK burst
+            spec: 3GPP TS 45.004
+            · modulation const-env-phase vs const-env-phase/fsk2: gate x1.00
+            · BW99 241.3 kHz vs 180 kHz–300 kHz: 1.00
+            · symbol rate 167.2 kHz vs 265 kHz–275 kHz: 0.45
+            · burst 0.503 ms: 1.00
+     49.0%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 241.3 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 167.2 kHz vs 30 kHz–260 kHz: 1.00
+            · burst 0.503 ms: 0.60
+     49.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation const-env-phase vs fsk2: gate x0.55
+            · BW99 241.3 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 167.2 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 9  t=41.575 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     244.9 kHz / 98.94 kHz   offset -3.595 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.70  edge 16.6 dB
+  symbol rate    270.8 kHz (line SNR 10.2x)
+  FSK tones      2, deviation 46.74 kHz
+  · symbol rate from fm-sign-transitions
+  · tone count via eye(w=2)
+  candidates:
+    100.0%  GSM / GMSK burst
+            spec: 3GPP TS 45.004
+            · modulation fsk2 vs const-env-phase/fsk2: gate x1.00
+            · BW99 244.9 kHz vs 180 kHz–300 kHz: 1.00
+            · symbol rate 270.8 kHz vs 265 kHz–275 kHz: 1.00
+            · burst 0.503 ms: 1.00
+     89.8%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 244.9 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 270.8 kHz vs 30 kHz–260 kHz: 0.95
+            · burst 0.503 ms: 0.60
+            · FSK deviation 46.74 kHz: 1.00
+     89.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 244.9 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 270.8 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 10  t=46.191 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     252.8 kHz / 99.85 kHz   offset -3.94 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.65  edge 16.0 dB
+  symbol rate    86.75 kHz (line SNR 6.0x)
+  FSK tones      2, deviation 33.83 kHz
+  · symbol rate from fm-derivative
+  · tone count via eye(w=6)
+  candidates:
+     91.0%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 252.8 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 86.75 kHz vs 30 kHz–260 kHz: 1.00
+            · burst 0.503 ms: 0.60
+            · FSK deviation 33.83 kHz: 1.00
+     89.0%  Z-Wave (G.9959 GFSK)
+            spec: ITU-T G.9959
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 252.8 kHz vs 30 kHz–400 kHz: 1.00
+            · symbol rate 86.75 kHz vs 9 kHz–110 kHz: 1.00
+            · burst 0.503 ms: 0.60
+     89.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 252.8 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 86.75 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+
+─── burst 11  t=50.806 ms  len=0.503 ms  SNR≈198.1 dB ───
+  class          fsk2
+  BW99 / RMS     244.7 kHz / 98.07 kHz   offset -4.615 kHz
+  env CV / PAPR  0.000 / 0.0 dB   flatness 0.70  edge 16.2 dB
+  symbol rate    133.3 kHz (line SNR 4.8x)
+  FSK tones      2, deviation 60.63 kHz
+  CSS            BW≈250 kHz, SF≈5, 1953 MHz/s, dechirp energy 0.10
+  · symbol rate from fm-derivative
+  · tone count via eye(w=2)
+  candidates:
+     91.0%  SiK / MAVLink telemetry (2-FSK/GFSK)
+            spec: SiK firmware (Si1000/Si4432), MAVLink v2
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 244.7 kHz vs 60 kHz–400 kHz: 1.00
+            · symbol rate 133.3 kHz vs 30 kHz–260 kHz: 1.00
+            · burst 0.503 ms: 0.60
+            · FSK deviation 60.63 kHz: 1.00
+     89.0%  Wi-SUN / 802.15.4g 2-FSK
+            spec: IEEE 802.15.4g / Wi-SUN FAN 1.1
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 244.7 kHz vs 100 kHz–800 kHz: 1.00
+            · symbol rate 133.3 kHz vs 45 kHz–310 kHz: 1.00
+            · burst 0.503 ms: 0.60
+     82.1%  Z-Wave (G.9959 GFSK)
+            spec: ITU-T G.9959
+            · modulation fsk2 vs fsk2: gate x1.00
+            · BW99 244.7 kHz vs 30 kHz–400 kHz: 1.00
+            · symbol rate 133.3 kHz vs 9 kHz–110 kHz: 0.77
+            · burst 0.503 ms: 0.60
+  * burst 0     0.50 ms  snr 198.1 dB  cv  0.00  score 1.00  GSM / GMSK burst
+  * burst 1     0.50 ms  snr 198.1 dB  cv  0.00  score 1.00  GSM / GMSK burst
+  * burst 2     0.50 ms  snr 198.1 dB  cv  0.00  score 0.91  SiK / MAVLink telemetry (2-FSK/GFSK)
+  * burst 3     0.50 ms  snr 198.1 dB  cv  0.00  score 1.00  GSM / GMSK burst
+  * burst 4     0.50 ms  snr 198.1 dB  cv  0.00  score 0.62  GSM / GMSK burst
+  * burst 5     0.50 ms  snr 198.1 dB  cv  0.00  score 0.64  GSM / GMSK burst
+  * burst 6     0.50 ms  snr 198.1 dB  cv  0.00  score 1.00  GSM / GMSK burst
+  * burst 7     0.50 ms  snr 198.1 dB  cv  0.00  score 1.00  GSM / GMSK burst
+  * burst 8     0.50 ms  snr 198.1 dB  cv  0.00  score 0.78  GSM / GMSK burst
+  * burst 9     0.50 ms  snr 198.1 dB  cv  0.00  score 1.00  GSM / GMSK burst
+  * burst 10    0.50 ms  snr 198.1 dB  cv  0.00  score 0.91  SiK / MAVLink telemetry (2-FSK/GFSK)
+  * burst 11    0.50 ms  snr 198.1 dB  cv  0.00  score 0.91  SiK / MAVLink telemetry (2-FSK/GFSK)
+  -> 12 bursts, 12 confident. CORRECT
+
+======================================================================
+SUMMARY
+======================================================================
+band        bursts  conf  result
+gsm_gmsk_clean      12    12  CORRECT

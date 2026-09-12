@@ -1,0 +1,152 @@
+
+======================================================================
+nr30_clean  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+    burst 0     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 1     0.90 ms  snr 186.8 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 2     0.90 ms  snr 186.7 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 3     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 4     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 5     0.90 ms  snr 186.7 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 6     0.90 ms  snr 186.7 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 7     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 8     0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 9     0.90 ms  snr 186.7 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 10    0.90 ms  snr 186.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 11    0.90 ms  snr 186.7 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 12 bursts, 3 confident. CORRECT
+
+======================================================================
+nr30_snr+00  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+    burst 0    30.00 ms  snr   2.4 dB  cv  0.55  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. missed (wanted 5G NR (OFDM, 30 kHz SCS))
+
+======================================================================
+nr30_snr+05  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+    burst 0     0.07 ms  snr   6.6 dB  cv  0.51  score 0.12  5G NR (OFDM, 30 kHz SCS)
+    burst 1     0.10 ms  snr   6.5 dB  cv  0.53  score 0.16  5G NR (OFDM, 30 kHz SCS)
+    burst 2     0.07 ms  snr   6.2 dB  cv  0.51  score 0.13  5G NR (OFDM, 30 kHz SCS)
+    burst 3     0.09 ms  snr   6.7 dB  cv  0.51  score 0.15  5G NR (OFDM, 30 kHz SCS)
+    burst 4     0.08 ms  snr   6.7 dB  cv  0.52  score 0.14  5G NR (OFDM, 30 kHz SCS)
+    burst 5     0.09 ms  snr   6.6 dB  cv  0.52  score 0.15  5G NR (OFDM, 30 kHz SCS)
+    burst 6     0.14 ms  snr   6.6 dB  cv  0.51  score 0.17  5G NR (OFDM, 30 kHz SCS)
+    burst 7     0.10 ms  snr   6.7 dB  cv  0.51  score 0.15  5G NR (OFDM, 30 kHz SCS)
+    burst 8     0.07 ms  snr   6.7 dB  cv  0.53  score 0.13  5G NR (OFDM, 30 kHz SCS)
+    burst 9     0.11 ms  snr   6.7 dB  cv  0.52  score 0.16  5G NR (OFDM, 30 kHz SCS)
+    burst 10    0.07 ms  snr   6.6 dB  cv  0.53  score 0.13  5G NR (OFDM, 30 kHz SCS)
+    burst 11    0.08 ms  snr   6.7 dB  cv  0.53  score 0.13  5G NR (OFDM, 30 kHz SCS)
+  -> 12 bursts, 0 confident. missed (wanted 5G NR (OFDM, 30 kHz SCS))
+
+======================================================================
+nr30_snr+10  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+    burst 0     0.90 ms  snr  10.6 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 1     0.90 ms  snr  10.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 2     0.90 ms  snr  10.6 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 3     0.90 ms  snr  10.6 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 4     0.90 ms  snr  10.7 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 5     0.90 ms  snr  10.6 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+  * burst 6     0.90 ms  snr  10.6 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 7     0.90 ms  snr  10.6 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 8     0.90 ms  snr  10.6 dB  cv  0.54  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 9     0.90 ms  snr  10.6 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 10    0.90 ms  snr  10.7 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+  * burst 11    0.90 ms  snr  10.6 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+  -> 12 bursts, 5 confident. CORRECT
+
+======================================================================
+nr30_snr+15  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+    burst 0     0.90 ms  snr  15.3 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 1     0.90 ms  snr  15.4 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 2     0.90 ms  snr  15.3 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 3     0.90 ms  snr  15.3 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 4     0.90 ms  snr  15.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 5     0.90 ms  snr  15.4 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+  * burst 6     0.90 ms  snr  15.3 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 7     0.90 ms  snr  15.3 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 8     0.90 ms  snr  15.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 9     0.90 ms  snr  15.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 10    0.90 ms  snr  15.4 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+  * burst 11    0.90 ms  snr  15.3 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+  -> 12 bursts, 5 confident. CORRECT
+
+======================================================================
+nr30_snr+20  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+    burst 0     0.90 ms  snr  20.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 1     0.90 ms  snr  20.3 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 2     0.90 ms  snr  20.2 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 3     0.90 ms  snr  20.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 4     0.90 ms  snr  20.2 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 5     0.90 ms  snr  20.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 6     0.90 ms  snr  20.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 7     0.90 ms  snr  20.2 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 8     0.90 ms  snr  20.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 9     0.90 ms  snr  20.1 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 10    0.90 ms  snr  20.2 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+  * burst 11    0.90 ms  snr  20.2 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+  -> 12 bursts, 4 confident. CORRECT
+
+======================================================================
+nr30_snr+30  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+    burst 0     0.90 ms  snr  30.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 1     0.90 ms  snr  30.3 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  * burst 2     0.90 ms  snr  30.2 dB  cv  0.53  score 1.00  5G NR (OFDM, 30 kHz SCS)
+    burst 3     0.90 ms  snr  30.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 4     0.90 ms  snr  30.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 5     0.90 ms  snr  30.2 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 6     0.90 ms  snr  30.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 7     0.90 ms  snr  30.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 8     0.90 ms  snr  30.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 9     0.90 ms  snr  30.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 10    0.90 ms  snr  30.2 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+    burst 11    0.90 ms  snr  30.2 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 12 bursts, 1 confident. CORRECT
+
+======================================================================
+nr30_snr-05  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+    burst 0    30.00 ms  snr   1.0 dB  cv  0.53  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. missed (wanted 5G NR (OFDM, 30 kHz SCS))
+
+======================================================================
+nr30_snr-10  --  3500.000 MHz, 460800 samples @ 15.4 MS/s
+expected: 5G NR (OFDM, 30 kHz SCS)  (OFDM)
+antenna: None  gain: None dB
+======================================================================
+    burst 0    30.00 ms  snr   0.5 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. missed (wanted 5G NR (OFDM, 30 kHz SCS))
+
+======================================================================
+SUMMARY
+======================================================================
+band        bursts  conf  result
+nr30_clean      12     3  CORRECT
+nr30_snr+00       1     0  missed (wanted 5G NR (OFDM, 30 kHz SCS))
+nr30_snr+05      12     0  missed (wanted 5G NR (OFDM, 30 kHz SCS))
+nr30_snr+10      12     5  CORRECT
+nr30_snr+15      12     5  CORRECT
+nr30_snr+20      12     4  CORRECT
+nr30_snr+30      12     1  CORRECT
+nr30_snr-05       1     0  missed (wanted 5G NR (OFDM, 30 kHz SCS))
+nr30_snr-10       1     0  missed (wanted 5G NR (OFDM, 30 kHz SCS))

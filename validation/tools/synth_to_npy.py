@@ -31,7 +31,10 @@ def read_sidecar(path):
 
 
 def main():
-    bins = sorted(GEN_DIR.glob("*.bin"))
+    bins = sorted(
+        b for b in GEN_DIR.glob("*.bin")
+        if not b.name.startswith(".")
+    )
     if not bins:
         raise SystemExit(f"no .bin files in {GEN_DIR} -- run gen_wifi.m first")
 
@@ -58,7 +61,7 @@ def main():
         base.with_suffix(".json").write_text(json.dumps(dict(
             name=b.stem,
             source=m.get("source", "matlab_generated"),
-            centre_hz=float(m.get("centre_hz", 2.437e9)),  
+            centre_hz=float(m.get("centre_hz", 0)),
             fs_hz=float(m["fs_hz"]),
             gain_db=None, agc=None, antenna=None,
             duration_s=len(iq) / float(m["fs_hz"]),

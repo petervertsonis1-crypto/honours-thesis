@@ -39,9 +39,13 @@ EXPECT = {
     "wifi11b":   "Wi-Fi 802.11b/g",
     "wifi_ht20": "Wi-Fi 802.11g/n/ax 20 MHz",
     "wifi_ht40": "Wi-Fi 802.11n/ac/ax 40 MHz",
+    "bluetooth_br": "Bluetooth Classic",
     "bluetooth_le1m": "Bluetooth LE 1M",
     "bluetooth_le2m": "Bluetooth LE 2M",
     "zigbee_oqpsk": "Zigbee / 802.15.4 O-QPSK DSSS",
+    "p25_c4fm": "P25 Phase 1",
+    "gsm_gmsk": "GSM / GMSK",
+    "nr30": "5G NR (OFDM, 30 kHz SCS)",
     # AM voice. Philip's database has "Analog FM voice / NBFM" but no AM entry,
     # so there is nothing here that could be right. Coverage gap, not a failure.
     "airband":  None,
@@ -61,7 +65,7 @@ def latest_captures(directory, only=None):
             continue
         meta = json.loads(js.read_text())
         name = meta["name"]
-        if only and name not in only:
+        if only and not any(name.startswith(prefix) for prefix in only):
             continue
         found[name] = (npy, meta)
     return found
