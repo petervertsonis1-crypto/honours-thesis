@@ -57,8 +57,8 @@ def main():
         np.save(base.with_suffix(".npy"), iq)
         base.with_suffix(".json").write_text(json.dumps(dict(
             name=b.stem,
-            source="matlab_wlan_toolbox",
-            centre_hz=2.437e9,          # nominal ch 6; baseband, so cosmetic
+            source=m.get("source", "matlab_generated"),
+            centre_hz=float(m.get("centre_hz", 2.437e9)),  
             fs_hz=float(m["fs_hz"]),
             gain_db=None, agc=None, antenna=None,
             duration_s=len(iq) / float(m["fs_hz"]),

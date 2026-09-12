@@ -1,7 +1,17 @@
 function outdir = gen_outdir()
-%GEN_OUTDIR Absolute path to thesis/captures/generated, independent of pwd.
-here   = fileparts(mfilename('fullpath'));
-repo   = fileparts(fileparts(here));
-outdir = fullfile(repo, 'captures', 'generated');
-if ~exist(outdir, 'dir'); mkdir(outdir); end
+%GEN_OUTDIR Output directory for generated thesis captures on external SSD.
+
+ssd_root = '/Volumes/MySSD';
+
+% Fail clearly if the SSD is not mounted.
+if ~isfolder(ssd_root)
+    error('MySSD is not mounted. Connect the SSD before generating captures.');
+end
+
+outdir = fullfile(ssd_root, 'honours-thesis', 'generated-captures');
+
+if ~isfolder(outdir)
+    mkdir(outdir);
+end
+
 end

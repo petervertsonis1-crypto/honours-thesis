@@ -1,0 +1,715 @@
+
+======================================================================
+noise_white_000  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.54 MHz   offset -3.643 kHz
+  env CV / PAPR  0.523 / 11.2 dB   flatness 0.99  edge 0.0 dB
+  symbol rate    1.361 MHz (line SNR 4.3x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.13
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=7)
+  candidates:
+     86.9%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 1.361 MHz vs 900 kHz–1.5 MHz: 1.00
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.87  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_001  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.55 MHz   offset -5.06 kHz
+  env CV / PAPR  0.523 / 10.6 dB   flatness 0.99  edge 0.0 dB
+  symbol rate    841.8 kHz (line SNR 4.5x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=12)
+  candidates:
+     84.6%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 841.8 kHz vs 900 kHz–1.5 MHz: 0.92
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.85  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_002  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.79 MHz / 11.55 MHz   offset -7.131 kHz
+  env CV / PAPR  0.522 / 10.5 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    5.175 MHz (line SNR 4.4x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.79 MHz, SF≈5, 1.224e+07 MHz/s, dechirp energy 0.13
+  · symbol rate from squared-envelope
+  · tone count via blanket(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.79 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.79 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     17.3%  Wi-Fi 802.11g/n/ax 20 MHz (OFDM)
+            spec: IEEE 802.11-2020 cl.17/19/27
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.79 MHz vs 15 MHz–20.5 MHz: 1.00
+            · burst 11.040 ms: 0.65
+    burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. nothing confident (correct)
+
+======================================================================
+noise_white_003  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.55 MHz   offset -4.889 kHz
+  env CV / PAPR  0.523 / 11.9 dB   flatness 0.99  edge 0.0 dB
+  symbol rate    6.058 MHz (line SNR 4.3x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     17.3%  Wi-Fi 802.11g/n/ax 20 MHz (OFDM)
+            spec: IEEE 802.11-2020 cl.17/19/27
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 15 MHz–20.5 MHz: 1.00
+            · burst 11.040 ms: 0.65
+    burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. nothing confident (correct)
+
+======================================================================
+noise_white_004  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.54 MHz   offset -4.836 kHz
+  env CV / PAPR  0.523 / 10.7 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    8.244 MHz (line SNR 4.1x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.13
+  · symbol rate from squared-envelope
+  · tone count via blanket(w=1)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     17.3%  Wi-Fi 802.11g/n/ax 20 MHz (OFDM)
+            spec: IEEE 802.11-2020 cl.17/19/27
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 15 MHz–20.5 MHz: 1.00
+            · burst 11.040 ms: 0.65
+    burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. nothing confident (correct)
+
+======================================================================
+noise_white_005  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.55 MHz   offset -4.251 kHz
+  env CV / PAPR  0.522 / 11.2 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    3.097 MHz (line SNR 4.6x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.13
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=3)
+  candidates:
+     46.2%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 3.097 MHz vs 900 kHz–1.5 MHz: 0.13
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.46  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_006  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.53 MHz   offset -2.409 kHz
+  env CV / PAPR  0.523 / 10.7 dB   flatness 0.99  edge 0.0 dB
+  symbol rate    332.3 kHz (line SNR 4.4x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=30)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     17.3%  Wi-Fi 802.11g/n/ax 20 MHz (OFDM)
+            spec: IEEE 802.11-2020 cl.17/19/27
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 15 MHz–20.5 MHz: 1.00
+            · burst 11.040 ms: 0.65
+    burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. nothing confident (correct)
+
+======================================================================
+noise_white_007  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.55 MHz   offset -5.597 kHz
+  env CV / PAPR  0.522 / 11.3 dB   flatness 0.99  edge 0.0 dB
+  symbol rate    2.526 MHz (line SNR 4.1x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=4)
+  candidates:
+     64.1%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 2.526 MHz vs 900 kHz–1.5 MHz: 0.37
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.64  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_008  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.55 MHz   offset -5.614 kHz
+  env CV / PAPR  0.523 / 12.0 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    5.428 MHz (line SNR 4.0x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from squared-envelope
+  · tone count via blanket(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     17.3%  Wi-Fi 802.11g/n/ax 20 MHz (OFDM)
+            spec: IEEE 802.11-2020 cl.17/19/27
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 15 MHz–20.5 MHz: 1.00
+            · burst 11.040 ms: 0.65
+    burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. nothing confident (correct)
+
+======================================================================
+noise_white_009  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.56 MHz   offset -7.343 kHz
+  env CV / PAPR  0.523 / 10.9 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    416.6 kHz (line SNR 4.2x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.13
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=24)
+  candidates:
+     39.0%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 416.6 kHz vs 900 kHz–1.5 MHz: 0.07
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.39  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_010  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.55 MHz   offset -3.325 kHz
+  env CV / PAPR  0.523 / 10.8 dB   flatness 0.99  edge 0.0 dB
+  symbol rate    1.486 MHz (line SNR 4.1x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=7)
+  candidates:
+     86.9%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 1.486 MHz vs 900 kHz–1.5 MHz: 1.00
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.87  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_011  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.55 MHz   offset -7.325 kHz
+  env CV / PAPR  0.523 / 11.0 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    1.353 MHz (line SNR 4.0x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=7)
+  candidates:
+     81.6%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.82  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_012  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.57 MHz   offset -2.332 kHz
+  env CV / PAPR  0.522 / 11.3 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    4.157 MHz (line SNR 4.6x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     17.3%  Wi-Fi 802.11g/n/ax 20 MHz (OFDM)
+            spec: IEEE 802.11-2020 cl.17/19/27
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 15 MHz–20.5 MHz: 1.00
+            · burst 11.040 ms: 0.65
+    burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. nothing confident (correct)
+
+======================================================================
+noise_white_013  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.53 MHz   offset -7.297 kHz
+  env CV / PAPR  0.524 / 11.4 dB   flatness 0.99  edge 0.0 dB
+  symbol rate    2.25 MHz (line SNR 4.4x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=4)
+  candidates:
+     70.7%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 2.25 MHz vs 900 kHz–1.5 MHz: 0.51
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.71  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_014  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.55 MHz   offset -5.188 kHz
+  env CV / PAPR  0.522 / 11.8 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    437 kHz (line SNR 4.2x)
+  FSK tones      2, deviation 283.5 kHz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via eye(w=2)
+  candidates:
+     46.5%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 437 kHz vs 900 kHz–1.5 MHz: 0.13
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.47  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_015  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.79 MHz / 11.54 MHz   offset -5.08 kHz
+  env CV / PAPR  0.523 / 11.0 dB   flatness 0.99  edge 0.0 dB
+  symbol rate    5.143 MHz (line SNR 4.3x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.79 MHz, SF≈5, 1.224e+07 MHz/s, dechirp energy 0.13
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.79 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.79 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     17.3%  Wi-Fi 802.11g/n/ax 20 MHz (OFDM)
+            spec: IEEE 802.11-2020 cl.17/19/27
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.79 MHz vs 15 MHz–20.5 MHz: 1.00
+            · burst 11.040 ms: 0.65
+    burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. nothing confident (correct)
+
+======================================================================
+noise_white_016  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.54 MHz   offset -2.269 kHz
+  env CV / PAPR  0.523 / 10.8 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    723.7 kHz (line SNR 4.5x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.226e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from fm-derivative
+  · tone count via blanket(w=14)
+  candidates:
+     79.1%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.8 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 723.7 kHz vs 900 kHz–1.5 MHz: 0.74
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.79  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_017  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.56 MHz   offset -4.281 kHz
+  env CV / PAPR  0.524 / 10.4 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    5.741 MHz (line SNR 4.2x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from squared-envelope
+  · tone count via blanket(w=2)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     17.3%  Wi-Fi 802.11g/n/ax 20 MHz (OFDM)
+            spec: IEEE 802.11-2020 cl.17/19/27
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 15 MHz–20.5 MHz: 1.00
+            · burst 11.040 ms: 0.65
+    burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. nothing confident (correct)
+
+======================================================================
+noise_white_018  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.4 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.79 MHz / 11.53 MHz   offset -872.7 Hz
+  env CV / PAPR  0.523 / 11.1 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    3.259 MHz (line SNR 4.3x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.79 MHz, SF≈5, 1.224e+07 MHz/s, dechirp energy 0.12
+  · symbol rate from squared-envelope
+  · tone count via blanket(w=3)
+  candidates:
+     37.8%  Wi-Fi 802.11b/g (DSSS/CCK)
+            spec: IEEE 802.11-2020 cl.16/17
+            · modulation linear-shaped vs dsss-psk/linear-shaped/const-env-phase: gate x1.00
+            · BW99 19.79 MHz vs 14 MHz–24 MHz: 1.00
+            · symbol rate 3.259 MHz vs 900 kHz–1.5 MHz: 0.07
+            · burst 11.040 ms: 0.54
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.79 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.79 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+  * burst 0    11.04 ms  snr   0.4 dB  cv  0.52  score 0.38  Wi-Fi 802.11b/g (DSSS/CCK)
+  -> 1 bursts, 1 confident. 1 confident -- expected none
+
+======================================================================
+noise_white_019  --  2437.000 MHz, 220800 samples @ 20.0 MS/s
+expected: (none - noise control)  ((none - noise control))
+antenna: None  gain: None dB
+======================================================================
+
+─── burst 0  t=0.000 ms  len=11.040 ms  SNR≈0.3 dB ───
+  class          linear-shaped
+  BW99 / RMS     19.8 MHz / 11.54 MHz   offset -6.583 kHz
+  env CV / PAPR  0.524 / 10.7 dB   flatness 1.00  edge 0.0 dB
+  symbol rate    6.794 MHz (line SNR 4.4x)
+  FSK tones      1, deviation 0 Hz
+  CSS            BW≈19.8 MHz, SF≈5, 1.225e+07 MHz/s, dechirp energy 0.11
+  · symbol rate from fm-sign-transitions
+  · tone count via blanket(w=1)
+  NO CONFIDENT MATCH — closest entries, all weak:
+     20.0%  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+            spec: 3GPP TS 36.211 / 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 1.2 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     20.0%  5G NR (OFDM, 30 kHz SCS)
+            spec: 3GPP TS 38.211
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 5 MHz–100 MHz: 1.00
+            · burst 11.040 ms: 1.00
+     17.3%  Wi-Fi 802.11g/n/ax 20 MHz (OFDM)
+            spec: IEEE 802.11-2020 cl.17/19/27
+            · modulation linear-shaped vs ofdm: gate x0.20
+            · BW99 19.8 MHz vs 15 MHz–20.5 MHz: 1.00
+            · burst 11.040 ms: 0.65
+    burst 0    11.04 ms  snr   0.3 dB  cv  0.52  score 0.20  LTE / 5G NR downlink (OFDM, 15 kHz SCS)
+  -> 1 bursts, 0 confident. nothing confident (correct)
+
+======================================================================
+SUMMARY
+======================================================================
+band        bursts  conf  result
+noise_white_000       1     1  1 confident -- expected none
+noise_white_001       1     1  1 confident -- expected none
+noise_white_002       1     0  nothing confident (correct)
+noise_white_003       1     0  nothing confident (correct)
+noise_white_004       1     0  nothing confident (correct)
+noise_white_005       1     1  1 confident -- expected none
+noise_white_006       1     0  nothing confident (correct)
+noise_white_007       1     1  1 confident -- expected none
+noise_white_008       1     0  nothing confident (correct)
+noise_white_009       1     1  1 confident -- expected none
+noise_white_010       1     1  1 confident -- expected none
+noise_white_011       1     1  1 confident -- expected none
+noise_white_012       1     0  nothing confident (correct)
+noise_white_013       1     1  1 confident -- expected none
+noise_white_014       1     1  1 confident -- expected none
+noise_white_015       1     0  nothing confident (correct)
+noise_white_016       1     1  1 confident -- expected none
+noise_white_017       1     0  nothing confident (correct)
+noise_white_018       1     1  1 confident -- expected none
+noise_white_019       1     0  nothing confident (correct)

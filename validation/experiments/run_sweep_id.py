@@ -36,6 +36,12 @@ EXPECT = {
     "ism915":   "LoRa",
     "pager":    "POCSAG",
     "wifi_ht20": "Wi-Fi 802.11g/n/ax 20 MHz",
+    "wifi11b":   "Wi-Fi 802.11b/g",
+    "wifi_ht20": "Wi-Fi 802.11g/n/ax 20 MHz",
+    "wifi_ht40": "Wi-Fi 802.11n/ac/ax 40 MHz",
+    "bluetooth_le1m": "Bluetooth LE 1M",
+    "bluetooth_le2m": "Bluetooth LE 2M",
+    "zigbee_oqpsk": "Zigbee / 802.15.4 O-QPSK DSSS",
     # AM voice. Philip's database has "Analog FM voice / NBFM" but no AM entry,
     # so there is nothing here that could be right. Coverage gap, not a failure.
     "airband":  None,
@@ -47,6 +53,8 @@ EXPECT = {
 def latest_captures(directory, only=None):
     found = {}
     for js in sorted(directory.glob("*.json")):
+        if js.name.startswith("."):
+            continue
         npy = js.with_suffix(".npy")
         if not npy.exists():
             print("not npy.exists()")
